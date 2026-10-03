@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLibrary } from '../context/LibraryContext';
+import { BookCover } from './BookCover';
 import { Search, Compass, BookCheck, Sparkles, ArrowRight } from 'lucide-react';
 import { HERO_IMAGE } from '../data/mockData';
 
@@ -125,18 +126,15 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <div className="mt-4 flex gap-4 items-center">
-                  <div className="w-28 shrink-0 shadow-lg rounded-r overflow-hidden aspect-[3/4] bg-[#2E2015]">
-                    {featuredBook.imageUrl ? (
-                      <img
-                        src={featuredBook.imageUrl}
-                        alt={featuredBook.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex flex-col justify-center items-center p-2 text-center bg-[#2B1B10] text-[#D4AF37]">
-                        <span className="text-[10px] font-bold line-clamp-2">{featuredBook.title}</span>
-                      </div>
-                    )}
+                  <div className="w-28 shrink-0">
+                    <BookCover
+                      title={featuredBook.title}
+                      author={featuredBook.author}
+                      category={featuredBook.category}
+                      imageUrl={featuredBook.imageUrl}
+                      theme={featuredBook.coverTheme}
+                      size="sm"
+                    />
                   </div>
 
                   <div className="space-y-1.5 flex-1 min-w-0">
