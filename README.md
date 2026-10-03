@@ -1,55 +1,346 @@
-Aquí tienes una versión en español, lista para copiar y pegar en tu `README.md`. Describe las funciones actuales y aclara qué partes todavía funcionan localmente:
+Voy a revisar la estructura, configuración, rutas, módulos, migraciones y pruebas de ambos lados del proyecto, excluyendo dependencias instaladas. Con eso preparo un README único que describa lo que realmente existe y qué partes están conectadas.
 
-```markdown
+Find files matching `src/**/*`
+
+Find files matching `backend/app/**/*`
+
+Find files matching `backend/database/**/*`
+
+Find files matching `backend/routes/*`
+
+Find files matching `backend/tests/**/*`
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\package.json"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\composer.json"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\Dockerfile"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\README.md"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\routes\\api.php"
+}
+
+Read , lines 1 to 160
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\config\\auth.php",
+  "view_range": [
+    1,
+    160
+  ]
+}
+
+Read , lines 1 to 70
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\config\\l5-swagger.php",
+  "view_range": [
+    1,
+    70
+  ]
+}
+
+Read , lines 1 to 110
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\.env.example",
+  "view_range": [
+    1,
+    110
+  ]
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\vite.config.ts"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\tsconfig.json"
+}
+
+Read , lines 1 to 220
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\app\\Http\\Controllers\\Api\\V1\\LoanController.php",
+  "view_range": [
+    1,
+    220
+  ]
+}
+
+Read , lines 1 to 230
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\app\\Http\\Controllers\\Api\\V1\\UserController.php",
+  "view_range": [
+    1,
+    230
+  ]
+}
+
+Read , lines 1 to 115
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\app\\Http\\Controllers\\Api\\V1\\CategoryController.php",
+  "view_range": [
+    1,
+    115
+  ]
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\app\\Services\\LoanService.php",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 105
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\seeders\\UserSeeder.php",
+  "view_range": [
+    1,
+    105
+  ]
+}
+
+Read , lines 520 to 710
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\context\\LibraryContext.tsx",
+  "view_range": [
+    520,
+    710
+  ]
+}
+
+Read , lines 1 to 160
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\phpunit.xml",
+  "view_range": [
+    1,
+    160
+  ]
+}
+
+Read , lines 150 to 300
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\components\\BookFormModal.tsx",
+  "view_range": [
+    150,
+    300
+  ]
+}
+
+Read , lines 1 to 110
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\components\\FeaturedShowcase.tsx",
+  "view_range": [
+    1,
+    110
+  ]
+}
+
+Read , lines 1 to 110
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\components\\UserProfileModal.tsx",
+  "view_range": [
+    1,
+    110
+  ]
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\migrations\\2024_01_01_000001_create_categories_table.php"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\migrations\\2024_01_01_000002_create_books_table.php"
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\migrations\\2024_01_01_000003_create_loans_table.php"
+}
+
+Read , lines 1 to 180
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\tests\\Feature\\BookTest.php",
+  "view_range": [
+    1,
+    180
+  ]
+}
+
+Read , lines 1 to 130
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\tests\\Feature\\LoanTest.php",
+  "view_range": [
+    1,
+    130
+  ]
+}
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\App.tsx",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 300 to 405
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\components\\BookFormModal.tsx",
+  "view_range": [
+    300,
+    405
+  ]
+}
+
+Read 
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\seeders\\DatabaseSeeder.php"
+}
+
+Read , lines 1 to 100
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\database\\seeders\\CategorySeeder.php",
+  "view_range": [
+    1,
+    100
+  ]
+}
+
+Read , lines 45 to 196
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\backend\\app\\Http\\Controllers\\Api\\V1\\BookController.php",
+  "view_range": [
+    45,
+    196
+  ]
+}
+
+Read , lines 1 to 150
+Completed with input: {
+  "path": "c:\\Antonny\\Estudios\\Continental\\Programacin web\\Consolidado\\src\\components\\CheckoutModal.tsx",
+  "view_range": [
+    1,
+    150
+  ]
+}
+
+Revisé la estructura y el código fuente del frontend y el backend, además de la configuración, las rutas, las migraciones, los seeders y las pruebas. Aquí tienes un README basado en cómo funciona actualmente el proyecto, listo para copiar en el `README.md` de GitHub. Dejé explícito qué funciones ya usan la API y cuáles aún son de demostración.
+
+````markdown
 # Librería Universal
 
-Sistema web para la gestión de una librería y biblioteca. Permite consultar un catálogo de libros, gestionar categorías e inventario y registrar usuarios. Está compuesto por un frontend en React y una API backend en Laravel conectada a MySQL.
+Aplicación web para explorar el catálogo de una librería y administrar libros, categorías e inventario. El proyecto incluye un frontend con React y TypeScript, una API REST desarrollada con Laravel y una base de datos MySQL.
 
 ## Funcionalidades
 
-### Catálogo y tienda
-- Consulta de libros y categorías desde la API de Laravel.
-- Búsqueda, filtros y ordenamiento del catálogo.
-- Vista de libros destacados y detalle de cada obra.
-- Carrito de compras y experiencia de compra de demostración.
+### Tienda y catálogo
 
-### Autenticación y usuarios
-- Registro de cuentas de cliente, almacenadas en MySQL.
-- Inicio de sesión validado por el backend mediante JWT.
-- El acceso al panel depende del rol guardado para el usuario.
-- Los administradores pueden gestionar el catálogo; las cuentas nuevas se registran como clientes.
+- Consulta de libros y categorías desde la API.
+- Búsqueda de libros y filtros por categoría, precio y disponibilidad.
+- Ordenamiento del catálogo y vista de obras destacadas.
+- Detalle del libro con autor, sinopsis, precio, stock y portada.
+- Portada de libro generada con diseño de encuadernación cuando el registro no tiene una imagen.
+
+### Cuentas y autenticación
+
+- Registro de clientes guardado en la base de datos.
+- Inicio y cierre de sesión contra Laravel mediante tokens JWT.
+- La interfaz determina si mostrar la tienda o el panel administrativo según el rol de la cuenta.
+- El registro público crea usuarios con rol de cliente. Las cuentas administrativas y de bibliotecario deben crearse mediante los mecanismos autorizados del backend.
 
 ### Panel administrativo
-- Consulta del inventario y sus métricas.
-- Creación, edición y eliminación de libros.
-- Ajuste de precios y existencias.
-- Creación y eliminación de categorías.
-- Las operaciones de libros y categorías se envían a la API y se guardan en MySQL.
-- El valor del inventario se calcula usando el precio y el número total de ejemplares.
 
-### Backend
-La API incluye endpoints para autenticación, libros, categorías, usuarios y préstamos. Aunque existen endpoints para préstamos y otras operaciones, no todos están conectados actualmente a la interfaz frontend.
+- Consulta de libros, categorías y métricas de inventario.
+- Creación, edición y eliminación de libros mediante la API.
+- Ajuste de precio y stock con persistencia en MySQL.
+- Creación y eliminación de categorías mediante la API.
+- Valor del inventario calculado usando el precio y el número total de ejemplares.
+- Acciones protegidas según el rol del usuario.
+
+### Préstamos
+
+El backend dispone de operaciones API para registrar préstamos, consultar préstamos y registrar devoluciones. El flujo de carrito y checkout del frontend todavía no utiliza esas operaciones.
 
 ## Tecnologías
 
-- **Frontend:** React, TypeScript, Vite y Tailwind CSS.
-- **Backend:** PHP, Laravel y API REST.
-- **Autenticación:** JWT.
-- **Base de datos:** MySQL.
-- **Diseño:** componentes de interfaz con Lucide Icons y Motion.
+### Frontend
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React
+- Motion
+
+### Backend
+
+- PHP 8.2 o superior
+- Laravel 10
+- MySQL
+- JWT para autenticación de la API
+- L5-Swagger para documentación OpenAPI
+- Apache en la imagen Docker del backend
+
+## Estructura del proyecto
+
+```text
+.
+├── src/
+│   ├── components/       # Tienda, formularios, modales y panel administrativo
+│   ├── context/          # Estado compartido de la aplicación
+│   ├── data/             # Datos iniciales de demostración
+│   ├── lib/              # Cliente API y normalización de respuestas
+│   └── types/            # Tipos TypeScript
+├── backend/
+│   ├── app/
+│   │   ├── DTOs/         # Objetos de transferencia de datos
+│   │   ├── Http/         # Controladores, middleware, requests y resources
+│   │   ├── Models/       # Modelos Eloquent
+│   │   ├── Repositories/ # Acceso a datos
+│   │   └── Services/     # Lógica de negocio
+│   ├── database/
+│   │   ├── migrations/   # Estructura de tablas
+│   │   └── seeders/      # Datos iniciales de demostración
+│   ├── routes/api.php    # Rutas REST
+│   └── Dockerfile        # Imagen PHP/Apache para despliegue
+├── package.json
+└── vite.config.ts
+```
 
 ## Requisitos
 
 - Node.js y npm.
 - PHP 8.2 o superior.
 - Composer.
-- MySQL y MySQL Workbench (opcional, para administrar la base de datos).
+- MySQL.
+- MySQL Workbench es opcional y puede utilizarse para administrar la base de datos.
 
 ## Configuración local
 
 ### 1. Crear la base de datos
 
-En MySQL Workbench, ejecuta:
+En MySQL Workbench, crea la base de datos:
 
 ```sql
 CREATE DATABASE IF NOT EXISTS libreria_universal
@@ -59,9 +350,13 @@ CREATE DATABASE IF NOT EXISTS libreria_universal
 
 ### 2. Configurar Laravel
 
-Abre `backend/.env` y configura los datos de conexión de MySQL:
+Crea `backend/.env` a partir de `backend/.env.example` y configura la conexión:
 
 ```env
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -70,38 +365,23 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Si tu usuario de MySQL tiene contraseña, escríbela en `DB_PASSWORD`.
+Reemplaza `DB_USERNAME` y `DB_PASSWORD` con las credenciales de tu instalación de MySQL. No subas el archivo `.env` ni claves o contraseñas al repositorio.
 
-Desde la carpeta `backend`, instala las dependencias, genera la clave de Laravel, ejecuta las migraciones y carga los datos de ejemplo:
+Desde una terminal, instala las dependencias, prepara Laravel y ejecuta las migraciones y datos de ejemplo:
 
 ```bash
 cd backend
 composer install
 php artisan key:generate
+php artisan jwt:secret
 php artisan migrate --seed
 ```
 
-El seeder incluye cuentas de demostración. Las credenciales configuradas actualmente son:
+Las migraciones crean las tablas de usuarios, categorías, libros, préstamos y tablas auxiliares de Laravel. Los seeders cargan categorías, libros, usuarios de demostración y préstamos de ejemplo.
 
-| Rol | Correo | Contraseña |
-|---|---|---|
-| Administrador | `admin@universal.com` | `admin123` |
-| Bibliotecario | `biblioteca@universal.com` | `biblioteca123` |
-| Cliente | `lector@universal.com` | `lector123` |
+> Las contraseñas de los seeders son únicamente para desarrollo. No uses cuentas ni contraseñas de demostración en producción.
 
-Estas credenciales son solo para desarrollo. Cámbialas antes de publicar el sistema.
-
-### 3. Instalar dependencias del frontend
-
-Desde la carpeta principal del proyecto:
-
-```bash
-npm install --legacy-peer-deps
-```
-
-El parámetro `--legacy-peer-deps` puede ser necesario para resolver las versiones de dependencias definidas actualmente en el proyecto.
-
-### 4. Iniciar el backend
+### 3. Iniciar el backend
 
 Desde la carpeta `backend`:
 
@@ -109,45 +389,135 @@ Desde la carpeta `backend`:
 php artisan serve --host=0.0.0.0 --port=8000
 ```
 
-La API quedará disponible en `http://localhost:8000`.
+La API local quedará disponible en `http://localhost:8000`.
 
-### 5. Iniciar el frontend
+### 4. Configurar e iniciar el frontend
 
-En otra terminal, desde la carpeta principal:
+Desde la carpeta principal instala dependencias:
+
+```bash
+npm install
+```
+
+En desarrollo, Vite reenvía las solicitudes que empiezan con `/api` a `http://localhost:8000`. Si configuras `VITE_API_URL`, utiliza la URL base del backend, sin añadir `/api/v1` al final.
+
+Ejemplo de `.env` del frontend para usar el backend local directamente:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+También puedes dejar `VITE_API_URL` sin definir para usar el proxy de Vite.
+
+Inicia el frontend en otra terminal desde la raíz:
 
 ```bash
 npm run dev
 ```
 
-Abre `http://localhost:3000` en el navegador. Vite reenvía las solicitudes `/api` al backend en el puerto `8000`.
+Abre `http://localhost:3000`.
 
-## Endpoints principales
+## API REST
+
+La versión actual de la API utiliza el prefijo `/api/v1`.
+
+### Autenticación
 
 | Método | Ruta | Descripción |
 |---|---|---|
-| `POST` | `/api/v1/auth/register` | Registrar una cuenta de cliente |
-| `POST` | `/api/v1/auth/login` | Iniciar sesión y obtener un token JWT |
+| `POST` | `/api/v1/auth/register` | Registrar un cliente |
+| `POST` | `/api/v1/auth/login` | Iniciar sesión y recibir un JWT |
+| `POST` | `/api/v1/auth/logout` | Cerrar sesión e invalidar el token |
+| `POST` | `/api/v1/auth/refresh` | Renovar el token |
 | `GET` | `/api/v1/auth/me` | Consultar el perfil autenticado |
-| `GET` | `/api/v1/books?all=true` | Consultar el catálogo completo |
-| `POST` | `/api/v1/books` | Crear un libro (requiere rol autorizado) |
-| `PUT` | `/api/v1/books/{id}` | Actualizar un libro (requiere rol autorizado) |
-| `DELETE` | `/api/v1/books/{id}` | Eliminar un libro (requiere rol administrador) |
-| `GET` | `/api/v1/categories` | Consultar las categorías |
-| `POST` | `/api/v1/categories` | Crear una categoría (requiere rol autorizado) |
-| `DELETE` | `/api/v1/categories/{id}` | Eliminar una categoría (requiere rol autorizado) |
 
-Las rutas protegidas requieren un token JWT en el encabezado `Authorization: Bearer <token>`.
+### Libros
 
-## Estado de integración
+| Método | Ruta | Acceso |
+|---|---|---|
+| `GET` | `/api/v1/books` | Público |
+| `GET` | `/api/v1/books?all=true` | Público; catálogo completo |
+| `GET` | `/api/v1/books/{id}` | Público |
+| `POST` | `/api/v1/books` | Administrador o bibliotecario |
+| `PUT` | `/api/v1/books/{id}` | Administrador o bibliotecario |
+| `PATCH` | `/api/v1/books/{id}` | Administrador o bibliotecario |
+| `DELETE` | `/api/v1/books/{id}` | Administrador |
 
-La autenticación, el catálogo, la gestión de libros y la gestión de categorías están conectados con la API de Laravel. El carrito, los cupones y el checkout todavía usan estado local del navegador; no deben considerarse operaciones de compra persistidas en MySQL. La carga de portadas desde archivos locales solo genera una vista previa; para persistir una portada debe usarse una URL de imagen.
+La lista de libros admite búsqueda, filtros, ordenamiento y paginación.
 
-## Comandos útiles
+### Categorías
+
+| Método | Ruta | Acceso |
+|---|---|---|
+| `GET` | `/api/v1/categories` | Público |
+| `POST` | `/api/v1/categories` | Administrador o bibliotecario |
+| `DELETE` | `/api/v1/categories/{id}` | Administrador o bibliotecario |
+
+### Préstamos
+
+| Método | Ruta | Acceso |
+|---|---|---|
+| `GET` | `/api/v1/me/loans` | Usuario autenticado; sus propios préstamos |
+| `GET` | `/api/v1/loans/{id}` | Usuario autenticado; sujeto a autorización |
+| `POST` | `/api/v1/loans` | Usuario autenticado |
+| `GET` | `/api/v1/loans` | Administrador o bibliotecario |
+| `PATCH` | `/api/v1/loans/{id}/return` | Administrador o bibliotecario |
+
+El backend actualiza de forma transaccional las copias disponibles al prestar y devolver libros.
+
+### Usuarios
+
+| Método | Ruta | Acceso |
+|---|---|---|
+| `GET` | `/api/v1/users` | Administrador o bibliotecario |
+| `GET` | `/api/v1/users/{id}` | Usuario autenticado; sujeto a autorización |
+| `PUT` | `/api/v1/users/{id}` | Usuario autenticado; sujeto a autorización |
+| `POST` | `/api/v1/users` | Administrador |
+| `DELETE` | `/api/v1/users/{id}` | Administrador |
+
+Las rutas protegidas requieren el encabezado:
+
+```text
+Authorization: Bearer <token>
+```
+
+## Documentación Swagger
+
+Con el backend en ejecución, abre:
+
+```text
+http://localhost:8000/api/documentation
+```
+
+El documento OpenAPI JSON se sirve en:
+
+```text
+http://localhost:8000/docs?api-docs.json
+```
+
+Para regenerarlo después de modificar las anotaciones:
+
+```bash
+cd backend
+php artisan l5-swagger:generate
+```
+
+## Estado de integración y limitaciones actuales
+
+- El frontend carga libros y categorías desde Laravel.
+- El registro y el inicio de sesión se validan contra el backend.
+- El panel guarda en MySQL las altas, modificaciones y bajas de libros y categorías.
+- Si el formulario de libro recibe una imagen cargada desde el dispositivo, solo se muestra una vista previa local. Para guardar una portada actualmente se necesita proporcionar una URL de imagen.
+- La portada de la tarjeta **Libro Destacado del Mes** se determina usando el primer libro marcado como destacado; si ninguno está marcado, se utiliza el primer libro del catálogo.
+- El apartado de selección de obras destacadas muestra libros que tienen una URL de imagen.
+- El carrito, los cupones, el checkout, los pedidos y la edición del perfil siguen usando estado local del navegador. No representan compras o pedidos persistidos en la base de datos.
+- Si la API del catálogo no está disponible, el frontend puede conservar los datos de demostración locales.
+
+## Pruebas y validación
 
 Desde la carpeta principal:
 
 ```bash
-npm run dev
 npm run lint
 npm run build
 ```
@@ -155,10 +525,46 @@ npm run build
 Desde `backend`:
 
 ```bash
-php artisan serve
-php artisan migrate:status
-php artisan route:list --path=api
-```
+php artisan test
 ```
 
-Nota: en la tabla de endpoints, el rol bibliotecario puede crear y editar libros y gestionar categorías; eliminar libros está restringido al administrador. También conviene no publicar las credenciales de demostración en un entorno real.
+Las pruebas del backend utilizan una base SQLite en memoria según `backend/phpunit.xml`; no deberían alterar la base de datos MySQL local.
+
+## Despliegue
+
+El frontend y el backend se despliegan por separado:
+
+- **Frontend:** Vercel, desde la raíz del repositorio.
+- **Backend:** Render, usando el Dockerfile de `backend/`.
+
+En Vercel configura la variable de entorno:
+
+```env
+VITE_API_URL=https://<url-publica-del-backend>
+```
+
+Debe ser el origen público del backend, sin `/api/v1` al final. Vuelve a desplegar el frontend después de cambiar variables `VITE_*`, porque Vite las incorpora durante la compilación.
+
+En Render configura las variables de entorno de Laravel, incluyendo `APP_KEY`, `JWT_SECRET` y la conexión MySQL. No incluyas valores secretos en este README ni en el repositorio.
+
+## Comandos útiles
+
+Frontend:
+
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
+
+Backend:
+
+```bash
+php artisan serve --host=0.0.0.0 --port=8000
+php artisan migrate:status
+php artisan route:list --path=api
+php artisan test
+php artisan l5-swagger:generate
+```
+````
