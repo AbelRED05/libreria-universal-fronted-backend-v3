@@ -167,6 +167,7 @@ return [
 
         /*
          * API security definitions. Will be generated into documentation file.
+         */
         'securityDefinitions' => [
             'securitySchemes' => [
                 'bearerAuth' => [
