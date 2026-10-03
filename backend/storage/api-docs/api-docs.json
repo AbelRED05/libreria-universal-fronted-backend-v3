@@ -1,0 +1,1499 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Librería Universal - API RESTful",
+        "description": "API Backend profesional para el sistema de gestión de biblioteca y catálogo de Librería Universal. Desarrollado con Laravel, arquitectura en capas, JWT Authentication y control de acceso basado en roles.",
+        "contact": {
+            "name": "Equipo de Arquitectura Librería Universal",
+            "email": "soporte@libreriauniversal.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Servidor API Local / AI Studio"
+        }
+    ],
+    "paths": {
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Registrar un nuevo usuario lector/cliente",
+                "description": "Crea una nueva cuenta de lector y devuelve el token JWT correspondiente. No permite autoasignarse rol de administrador.",
+                "operationId": "b9e746d77661fb8df55d0ac63e1ece77",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Alejandro Morales"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "lector@universal.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret123"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+34 612 984 551"
+                                    },
+                                    "favorite_genre": {
+                                        "type": "string",
+                                        "example": "Novelas, Historia"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario registrado exitosamente con token JWT",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuario registrado correctamente"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLC..."
+                                                },
+                                                "token_type": {
+                                                    "type": "string",
+                                                    "example": "bearer"
+                                                },
+                                                "expires_in": {
+                                                    "type": "integer",
+                                                    "example": 3600
+                                                },
+                                                "user": {
+                                                    "$ref": "#/components/schemas/User"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de validación de campos"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Iniciar sesión y obtener token JWT",
+                "description": "Valida las credenciales del usuario y emite un token JWT.",
+                "operationId": "a7997e7c1e3bfed64d4e56de82415931",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "admin.libreria@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "admin123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sesión iniciada exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Inicio de sesión exitoso"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLC..."
+                                                },
+                                                "token_type": {
+                                                    "type": "string",
+                                                    "example": "bearer"
+                                                },
+                                                "expires_in": {
+                                                    "type": "integer",
+                                                    "example": 3600
+                                                },
+                                                "user": {
+                                                    "$ref": "#/components/schemas/User"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciales inválidas o cuenta inactiva"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Cerrar sesión e invalidar token JWT",
+                "operationId": "f6b8957b4c0b25636613a9f0512a8ba9",
+                "responses": {
+                    "200": {
+                        "description": "Sesión cerrada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sesión cerrada exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Renovar token JWT expirado o próximo a expirar",
+                "operationId": "c42c3cd7fd7fe0dbd5bcc42962059e90",
+                "responses": {
+                    "200": {
+                        "description": "Token renovado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token renovado exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Token no válido o expirado más allá de la ventana de refresco"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/auth/me": {
+            "get": {
+                "tags": [
+                    "Autenticación"
+                ],
+                "summary": "Obtener perfil del usuario autenticado",
+                "operationId": "37d33f0281f67d31d05b4c45eea0143b",
+                "responses": {
+                    "200": {
+                        "description": "Perfil obtenido exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/books": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Listar catálogo de libros con paginación, filtros y búsqueda",
+                "operationId": "61b0fdd35b8c14afc6e29eb90598649a",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por título, autor o ISBN",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Filtrar por nombre de categoría",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "available_only",
+                        "in": "query",
+                        "description": "Solo libros con copias disponibles (1/true)",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Ordenación: latest, price-asc, price-desc, rating, title-asc",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Cantidad por página (default 15, max 100)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Colección paginada de libros",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Libros obtenidos correctamente"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Book"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Crear un nuevo libro en el catálogo (Requiere rol Admin o Bibliotecario)",
+                "operationId": "5df8eb3d652dcc56b60cd15be3cbbf85",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "author"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "El Quijote de la Mancha"
+                                    },
+                                    "author": {
+                                        "type": "string",
+                                        "example": "Miguel de Cervantes"
+                                    },
+                                    "category": {
+                                        "type": "string",
+                                        "example": "Novelas"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25
+                                    },
+                                    "total_copies": {
+                                        "type": "integer",
+                                        "example": 10
+                                    },
+                                    "isbn": {
+                                        "type": "string",
+                                        "example": "978-8424116033"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Novela cumbre de la literatura en español."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Libro creado exitosamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Book"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autenticado"
+                    },
+                    "403": {
+                        "description": "No autorizado (requiere rol admin o librarian)"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/books/{id}": {
+            "get": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Obtener detalles de un libro por su ID",
+                "operationId": "c5b00bf4246c67b18e3092bd3665ea29",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del libro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del libro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Book"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Libro no encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Actualizar un libro existente (Requiere rol Admin o Bibliotecario)",
+                "operationId": "3784164917f8ef14fad58d37b2f7de74",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del libro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Libro actualizado exitosamente"
+                    },
+                    "404": {
+                        "description": "Libro no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Eliminar un libro del catálogo (Requiere rol Administrador)",
+                "operationId": "0d28c2ad15a8fdbe85c2c95806b007f6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del libro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libro eliminado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Libro eliminado del catálogo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflicto: libro con préstamos activos"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Libros"
+                ],
+                "summary": "Actualizar parcialmente un libro (Requiere rol Admin o Bibliotecario)",
+                "operationId": "bd80aed78f62216a7bbbee191d4df41d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del libro",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Libro actualizado parcialmente"
+                    },
+                    "404": {
+                        "description": "Libro no encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/categories": {
+            "get": {
+                "tags": [
+                    "Categorías"
+                ],
+                "summary": "Listar todas las categorías con conteo de obras",
+                "operationId": "e225c2b7eb5daf7fb16e00f4f07ff030",
+                "responses": {
+                    "200": {
+                        "description": "Lista de categorías",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Category"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categorías"
+                ],
+                "summary": "Crear una nueva categoría (Admin o Bibliotecario)",
+                "operationId": "dd76b8d73b7ea8b4951f03d7c0904c92",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ensayo"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Obras de análisis y reflexión crítica"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Categoría creada exitosamente"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/categories/{id}": {
+            "delete": {
+                "tags": [
+                    "Categorías"
+                ],
+                "summary": "Eliminar una categoría (Admin o Bibliotecario)",
+                "operationId": "37196d259228d2274dd9dbef8b00e547",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la categoría",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Categoría eliminada exitosamente"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/loans": {
+            "get": {
+                "tags": [
+                    "Préstamos"
+                ],
+                "summary": "Listar todos los préstamos (Requiere rol Admin o Bibliotecario)",
+                "operationId": "d7f02ad86f88a5dac398b7f9467126f1",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtrar por estado: active, returned, overdue",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Filtrar por ID de usuario",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "book_id",
+                        "in": "query",
+                        "description": "Filtrar por ID de libro",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Colección paginada de préstamos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Loan"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Préstamos"
+                ],
+                "summary": "Crear un préstamo de libro (disminuye disponibilidad de forma atómica)",
+                "operationId": "9ec99d739226d4e1e61c1132cb2c8eac",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "book_id"
+                                ],
+                                "properties": {
+                                    "book_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "user_id": {
+                                        "description": "Obligatorio solo si el creador es admin/bibliotecario",
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "due_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2026-10-30"
+                                    },
+                                    "notes": {
+                                        "type": "string",
+                                        "example": "Préstamo para lectura en sala/domicilio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Préstamo registrado exitosamente"
+                    },
+                    "409": {
+                        "description": "No hay ejemplares disponibles"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/me/loans": {
+            "get": {
+                "tags": [
+                    "Préstamos"
+                ],
+                "summary": "Consultar el historial y préstamos activos del usuario autenticado",
+                "operationId": "672f03c2bff1f6b5a7c0fdd8ab4faad1",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtrar por estado: active, returned, overdue",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Préstamos del usuario autenticado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Loan"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/loans/{id}": {
+            "get": {
+                "tags": [
+                    "Préstamos"
+                ],
+                "summary": "Consultar detalle de un préstamo por ID",
+                "operationId": "7ad991030569edb2a676fcce8060a386",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del préstamo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del préstamo"
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/loans/{id}/return": {
+            "patch": {
+                "tags": [
+                    "Préstamos"
+                ],
+                "summary": "Registrar la devolución de un libro prestado (incrementa disponibilidad)",
+                "operationId": "f65c29900ac7d68f44474dcb2b1e92f7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del préstamo",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "notes": {
+                                        "type": "string",
+                                        "example": "Libro devuelto en perfecto estado de conservación."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Devolución registrada correctamente"
+                    },
+                    "409": {
+                        "description": "El préstamo ya fue devuelto con anterioridad"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Listar usuarios registrados (Requiere rol Admin o Bibliotecario)",
+                "operationId": "12e989554c281d650dff75443acabf54",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Buscar por nombre o email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "role",
+                        "in": "query",
+                        "description": "Filtrar por rol: admin, librarian, client",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Cantidad por página",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Colección paginada de usuarios",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Crear un nuevo usuario con rol específico (Solo Administrador)",
+                "operationId": "64da9b5a20fa4f20e947ed61b2bbb6da",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Bibliotecario Central"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "biblioteca@universal.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret123"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "enum": [
+                                            "admin",
+                                            "librarian",
+                                            "client"
+                                        ],
+                                        "example": "librarian"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado exitosamente"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/users/{id}": {
+            "get": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Obtener información de un usuario específico",
+                "operationId": "a9d321d5dc6bc2613c6cf5ba92b76c89",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalle del usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "No autorizado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Actualizar información de un usuario",
+                "operationId": "5bcda8371b3cb9f863a47620e636be9b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario actualizado exitosamente"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Usuarios"
+                ],
+                "summary": "Eliminar un usuario (Solo Administrador)",
+                "operationId": "0446b3779430bbd9ca0f106d9fd0a2ed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado"
+                    },
+                    "409": {
+                        "description": "Conflicto: usuario con préstamos pendientes o último administrador"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "title": "Usuario",
+                "description": "Entidad de usuario del sistema Librería Universal",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Alejandro Morales"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "lector@universal.com"
+                    },
+                    "role": {
+                        "type": "string",
+                        "enum": [
+                            "admin",
+                            "librarian",
+                            "client"
+                        ],
+                        "example": "client"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+34 612 984 551"
+                    },
+                    "favorite_genre": {
+                        "type": "string",
+                        "example": "Novelas, Ensayo"
+                    },
+                    "loyalty_points": {
+                        "type": "integer",
+                        "example": 220
+                    },
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Book": {
+                "title": "Libro",
+                "description": "Entidad de libro en catálogo e inventario",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "numeric_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Cien Años de Soledad"
+                    },
+                    "author": {
+                        "type": "string",
+                        "example": "Gabriel García Márquez"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "Novelas"
+                    },
+                    "isbn": {
+                        "type": "string",
+                        "example": "978-0307474728"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Obra cumbre del realismo mágico"
+                    },
+                    "publisher": {
+                        "type": "string",
+                        "example": "Editorial Sudamericana"
+                    },
+                    "year": {
+                        "type": "integer",
+                        "example": 1967
+                    },
+                    "pages": {
+                        "type": "integer",
+                        "example": 471
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 24.5
+                    },
+                    "originalPrice": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 28
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "example": "https://images.unsplash.com/..."
+                    },
+                    "coverTheme": {
+                        "type": "string",
+                        "example": "emerald"
+                    },
+                    "stock": {
+                        "type": "integer",
+                        "example": 18
+                    },
+                    "available_copies": {
+                        "type": "integer",
+                        "example": 18
+                    },
+                    "total_copies": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "float",
+                        "example": 4.9
+                    },
+                    "reviewsCount": {
+                        "type": "integer",
+                        "example": 384
+                    },
+                    "featured": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "bestSeller": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "type": "object"
+            },
+            "Loan": {
+                "title": "Préstamo",
+                "description": "Registro de préstamo de un libro a un usuario",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "book_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "loan_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-10-01"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-10-15"
+                    },
+                    "returned_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "active",
+                            "returned",
+                            "overdue"
+                        ],
+                        "example": "active"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "book": {
+                        "$ref": "#/components/schemas/Book"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "type": "object"
+            },
+            "Category": {
+                "title": "Categoría",
+                "description": "Clasificación temática de libros",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Novelas"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Narrativa de ficción y literatura universal"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "example": 15
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Autenticación mediante JWT Bearer token. Ejemplo: Bearer {token}",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Autenticación",
+            "description": "Operaciones de registro, inicio de sesión, renovación de token y perfil con JWT"
+        },
+        {
+            "name": "Libros",
+            "description": "Gestión del catálogo, inventario, detalles, búsqueda y filtros de libros"
+        },
+        {
+            "name": "Categorías",
+            "description": "Gestión y consulta de categorías literarias"
+        },
+        {
+            "name": "Préstamos",
+            "description": "Operaciones de solicitud, registro, devolución y consulta de préstamos de libros"
+        },
+        {
+            "name": "Usuarios",
+            "description": "Administración de cuentas de usuarios, roles y perfiles"
+        }
+    ]
+}

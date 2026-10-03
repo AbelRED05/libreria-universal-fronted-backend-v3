@@ -1,0 +1,6 @@
+{
+  "name": "Librería Universal - Sistema de Gestión de Biblioteca",
+  "description": "Sistema web de gestión de biblioteca y préstamos de libros con backend Laravel y frontend integrado.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
