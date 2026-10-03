@@ -1468,9 +1468,9 @@
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
-                "description": "Autenticación mediante JWT Bearer token. Ejemplo: Bearer {token}",
+                "scheme": "bearer",
                 "bearerFormat": "JWT",
-                "scheme": "bearer"
+                "description": "Introduce tu token JWT: Bearer {token}"
             }
         }
     },
@@ -1494,6 +1494,11 @@
         {
             "name": "Usuarios",
             "description": "Administración de cuentas de usuarios, roles y perfiles"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
         }
     ]
 }
