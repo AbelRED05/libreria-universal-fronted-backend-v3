@@ -38,10 +38,10 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Main Top Bar (3-Zone Contract) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Zone 1: Brand Element */}
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={() => {
               setActiveView('shop');
@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#2C1E14] block leading-tight">
+              <span className="font-serif text-lg sm:text-2xl font-bold tracking-tight text-[#2C1E14] block leading-tight">
                 Librería Universal
               </span>
               <span className="text-[10px] uppercase tracking-widest text-[#7C6652] block font-medium">
@@ -113,7 +113,7 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Zone 3: Primary Actions (User / Admin session + Cart) */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-3 shrink-0">
           
           {/* Admin Role Status Badge (shown when logged in as admin) */}
           {role === 'admin' && (
@@ -140,11 +140,11 @@ export const Navbar: React.FC = () => {
           ) : (
             <button
               onClick={() => setIsAuthModalOpen(true)}
-              className="px-3 py-1.5 text-xs font-semibold text-[#2C1E14] bg-[#FAF8F5] hover:bg-[#F2ECE1] border border-[#2C1E14]/20 rounded-lg transition-colors flex items-center gap-1.5"
+              className="p-2 sm:px-3 sm:py-1.5 text-xs font-semibold text-[#2C1E14] bg-[#FAF8F5] hover:bg-[#F2ECE1] border border-[#2C1E14]/20 rounded-lg transition-colors flex items-center gap-1.5"
               title="Iniciar Sesión (Cliente o Administrador)"
             >
               <LogIn className="w-3.5 h-3.5 text-[#C88A2E]" />
-              <span>Iniciar Sesión</span>
+              <span className="hidden sm:inline">Iniciar Sesión</span>
             </button>
           )}
 
