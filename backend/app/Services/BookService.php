@@ -59,10 +59,9 @@ class BookService
         return $this->bookRepository->create($data);
     }
 
-    public function updateBook(int $id, BookDTO $dto): Book
+    public function updateBook(int $id, array $data): Book
     {
         $book = $this->getBookById($id);
-        $data = $dto->toArray();
 
         // Ensure available_copies does not exceed total_copies
         if (isset($data['total_copies'])) {

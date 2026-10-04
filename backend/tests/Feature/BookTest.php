@@ -110,7 +110,9 @@ class BookTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonPath('success', true)
-            ->assertJsonPath('data.price', 25.50);
+            ->assertJsonPath('data.price', 25.50)
+            ->assertJsonPath('data.title', $book->title)
+            ->assertJsonPath('data.author', $book->author);
     }
 
     public function test_admin_can_delete_book_without_active_loans(): void

@@ -141,10 +141,12 @@ class BookController extends BaseApiController
      */
     public function update(UpdateBookRequest $request, int $id): JsonResponse
     {
-        $dto = BookDTO::fromArray($request->validated());
-        $book = $this->bookService->updateBook($id, $dto);
+        $book = $this->bookService->updateBook($id, $request->validated());
 
-        return $this->successResponse(new BookResource($book), 'Libro actualizado correctamente');
+        return $this->successResponse(
+            new BookResource($book),
+            'Libro actualizado correctamente'
+        );
     }
 
     /**
