@@ -317,4 +317,5 @@ php artisan route:list --path=api
 php artisan test
 php artisan l5-swagger:generate
 ```
-````
+````.
+
