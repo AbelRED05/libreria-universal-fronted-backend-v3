@@ -46,22 +46,6 @@ namespace App\Http\Controllers\Api\V1;
  * )
  *
  * @OA\Schema(
- *     schema="Loan",
- *     title="Préstamo",
- *     description="Registro de préstamo de un libro a un usuario",
- *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="user_id", type="integer", example=2),
- *     @OA\Property(property="book_id", type="integer", example=1),
- *     @OA\Property(property="loan_date", type="string", format="date", example="2026-10-01"),
- *     @OA\Property(property="due_date", type="string", format="date", example="2026-10-15"),
- *     @OA\Property(property="returned_at", type="string", format="date-time", nullable=true),
- *     @OA\Property(property="status", type="string", example="active", enum={"active","returned","overdue"}),
- *     @OA\Property(property="notes", type="string", nullable=true),
- *     @OA\Property(property="book", ref="#/components/schemas/Book"),
- *     @OA\Property(property="user", ref="#/components/schemas/User")
- * )
- *
- * @OA\Schema(
  *     schema="Category",
  *     title="Categoría",
  *     description="Clasificación temática de libros",

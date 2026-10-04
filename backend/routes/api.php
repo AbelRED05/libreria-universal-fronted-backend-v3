@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BookController;
 use App\Http\Controllers\Api\V1\UserController;
-use App\Http\Controllers\Api\V1\LoanController;
 use App\Http\Controllers\Api\V1\CategoryController;
 
 /*
@@ -49,18 +48,6 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['auth:api', 'role:admin,librarian'])->group(function () {
         Route::post('categories', [CategoryController::class, 'store']);
         Route::delete('categories/{id}', [CategoryController::class, 'destroy']);
-    });
-
-    // --- Loans / Préstamos Endpoints ---
-    Route::middleware('auth:api')->group(function () {
-        Route::get('me/loans', [LoanController::class, 'myLoans']);
-        Route::get('loans/{id}', [LoanController::class, 'show']);
-        Route::post('loans', [LoanController::class, 'store']);
-
-        Route::middleware(['role:admin,librarian'])->group(function () {
-            Route::get('loans', [LoanController::class, 'index']);
-            Route::patch('loans/{id}/return', [LoanController::class, 'returnBook']);
-        });
     });
 
     // --- Users Administration Endpoints ---
