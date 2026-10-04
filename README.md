@@ -45,12 +45,12 @@ El backend dispone de operaciones API para registrar préstamos, consultar prés
 
 ### Backend
 
-- PHP 8.2 o superior
-- Laravel 10
-- MySQL
-- JWT para autenticación de la API
-- L5-Swagger para documentación OpenAPI
-- Apache en la imagen Docker del backend
+- PHP 8.2 o superior.
+- Laravel 10.
+- MySQL.
+- JWT para autenticación de la API.
+- L5-Swagger para documentación OpenAPI.
+- Apache en la imagen Docker del backend.
 
 ## Estructura del proyecto
 
