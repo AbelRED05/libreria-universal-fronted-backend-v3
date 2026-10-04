@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Main Top Bar (3-Zone Contract) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-2 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-2 sm:gap-4">
         
         {/* Zone 1: Brand Element */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
