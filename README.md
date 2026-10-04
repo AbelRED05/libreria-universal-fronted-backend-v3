@@ -32,7 +32,7 @@ Aplicación web para explorar el catálogo de una librería y administrar libros
 
 El backend dispone de operaciones API para registrar préstamos, consultar préstamos y registrar devoluciones. El flujo de carrito y checkout del frontend todavía no utiliza esas operaciones.
 
-## Tecnologías
+## Tecnologías.
 
 ### Frontend
 
@@ -52,7 +52,7 @@ El backend dispone de operaciones API para registrar préstamos, consultar prés
 - L5-Swagger para documentación OpenAPI.
 - Apache en la imagen Docker del backend.
 
-## Estructura del proyecto
+## Estructura del proyecto.
 
 ```text
 .
@@ -78,7 +78,7 @@ El backend dispone de operaciones API para registrar préstamos, consultar prés
 └── vite.config.ts
 ```
 
-## Requisitos
+## Requisitos.
 
 - Node.js y npm.
 - PHP 8.2 o superior.
@@ -88,7 +88,7 @@ El backend dispone de operaciones API para registrar préstamos, consultar prés
 
 ## Configuración local
 
-### 1. Crear la base de datos
+### 1. Crear la base de datos.
 
 En MySQL Workbench, crea la base de datos:
 
@@ -98,7 +98,7 @@ CREATE DATABASE IF NOT EXISTS libreria_universal
   COLLATE utf8mb4_unicode_ci;
 ```
 
-### 2. Configurar Laravel
+### 2. Configurar Laravel.
 
 Crea `backend/.env` a partir de `backend/.env.example` y configura la conexión:
 
